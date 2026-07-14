@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 AUTH = os.getenv("AUTH_DATABASE_URL")
 TEL = os.getenv("TELEMETRY_DATABASE_URL")
-PM_EMAIL = "chirag.rao@autonexai360.com"
+PM_EMAIL = "pm@tracker.com"
 DAYS = 5
 random.seed(42)
 

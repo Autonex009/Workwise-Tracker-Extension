@@ -36,7 +36,7 @@ const THEMES = {
       { title: 'Deep-Dives', copy: 'Per-employee trends, tasks, and raw activity.' },
     ],
     button: 'bg-[#123fa9] hover:bg-[#0f348a] shadow-[0_16px_38px_rgba(18,63,169,0.26)]',
-    hint: 'chirag.rao@autonexai360.com · Pm@2026',
+    hint: 'pm@tracker.com · Pm@2026',
   },
 }
 
