@@ -1,6 +1,13 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '/api', headers: { 'Content-Type': 'application/json' } })
+// In dev, VITE_API_BASE_URL is unset and Vite's proxy forwards /api -> the
+// local FastAPI (see vite.config.js). In prod, set VITE_API_BASE_URL to the
+// deployed backend origin (e.g. https://tracker-dashboard-api-production.up.railway.app)
+// and requests go straight there.
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '')
+const baseURL = API_BASE ? `${API_BASE}/api` : '/api'
+
+const api = axios.create({ baseURL, headers: { 'Content-Type': 'application/json' } })
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')

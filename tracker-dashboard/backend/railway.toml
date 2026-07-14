@@ -1,0 +1,15 @@
+# Railway service config for the WorkWise Tracker Dashboard FastAPI backend.
+# In the Railway dashboard set the service's Root Directory to
+# "tracker-dashboard/backend" so the build context is this folder and this file
+# + the Dockerfile are picked up. Railway injects PORT at runtime; the Dockerfile
+# CMD passes it through to uvicorn.
+
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 100
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10

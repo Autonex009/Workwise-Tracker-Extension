@@ -4,6 +4,7 @@ Read-only over the production roster (auth) and the WorkWise telemetry DB.
 Mirrors the PM portal's stack so it can be ported in by lifting the routers.
 """
 import logging
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -44,12 +45,20 @@ def ensure_schema():
     except Exception as e:  # best-effort — read-only sandbox roles may block DDL
         log.warning("could not ensure work_sites table: %s", e)
 
+# Comma-separated list of allowed browser origins for the dashboard SPA.
+# In dev, defaults to Vite's default port; in prod set to your Vercel/Netlify domain(s).
+_allowed_origins_env = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:3100,http://localhost:5173",
+)
+ALLOWED_ORIGINS = [o.strip() for o in _allowed_origins_env.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=False,  # we use Bearer tokens in headers, not cookies
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
 )
 
 
