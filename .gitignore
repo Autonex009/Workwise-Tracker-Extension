@@ -24,13 +24,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (all variants, at any depth)
-.env
-.env.*
+# env files (all variants, at any depth) — keep only .env.example and .env.production.local
 **/.env
 **/.env.*
-!.env.example
 !**/.env.example
+!**/.env.production.local
 
 out/
 build/
