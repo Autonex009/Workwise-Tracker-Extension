@@ -1,0 +1,14 @@
+# Railway service config for the WorkWise Tracker Dashboard frontend.
+# In the Railway dashboard set the service's Root Directory to
+# "tracker-dashboard/frontend" so the build context is this folder and this file
+# is picked up. Railway runs: npm ci && npm run build && npm start
+
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "npm start"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10
