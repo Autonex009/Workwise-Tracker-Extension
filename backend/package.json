@@ -1,0 +1,19 @@
+{
+  "name": "work-wise-tracker-backend",
+  "version": "1.0.0",
+  "description": "Activity logging backend for WorkWise Tracker extension",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.21.0"
+  }
+}
